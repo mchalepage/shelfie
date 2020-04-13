@@ -32,7 +32,8 @@ class App extends Component {
         <Dashboard
         inventory={this.state.inventory}
         handleGetInventory={this.handleGetInventory} />
-        <Form />
+        <Form
+        handleGetInventory={this.handleGetInventory} />
       </div>
     );
   }

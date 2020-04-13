@@ -38,29 +38,45 @@ class Form extends Component {
         })
     }
 
+
+    handleAddProduct = (imgurl, name, price) => {
+        axios.post(`/api/product`, {imgurl, name, price}).then(res => {
+            console.log(res.data)
+            this.props.handleGetInventory()
+        }).catch(err => console.log(err))
+        this.handleResetInputValues()
+    }
+
     render(){
+        const {imgurl, name, price} = this.state
         return( 
             <div className='form'>
                 <input 
                     className="image-url-input" 
                     value={this.state.imgurl}
+                    placeholder='Image URL'
                     onChange={(e) => this.handleImageURL(e)}
                 />
                 <input 
                     className="product-name-input" 
                     value={this.state.name}
+                    placeholder='Product Name'
                     onChange={(e) => this.handleName(e)}
                 />
                 <input 
                     className="price-input"
                     value={this.state.price}
+                    placeholder='Product Price'
                     onChange={(e) => this.handlePrice(e)}
                 />
                 <button 
                     className="cancel-button"
                     onClick={() => this.handleResetInputValues()}    
                 >Cancel</button>
-                <button className="add-to-inventory-button">Add to Inventory</button>
+                <button 
+                className="add-to-inventory-button"
+                onClick={() => this.handleAddProduct(imgurl, name, price)}
+                >Add to Inventory</button>
             </div>
         )
     }
