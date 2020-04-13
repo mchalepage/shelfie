@@ -1,14 +1,23 @@
-import React from 'react'
+import React, {Component} from 'react'
 import axios from 'axios'
 import Product from '../product/Product'
 
-function Dashboard() {
-    return( 
+class Dashboard extends Component {
+    render(){
+        let products = this.props.inventory.map((e, i) => {
+            return <Product
+                    key={i}
+                    product={e} 
+                    />
+        })
+
+        return( 
         <div className='dashboard'>
             Dashboard
-            <Product />
+            {products}
         </div>
-    )
+        )
+    }
 }
 
 export default Dashboard

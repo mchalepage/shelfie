@@ -12,13 +12,26 @@ class App extends Component {
       inventory: []
     }
   }
+
+  componentDidMount(){
+    this.handleGetInventory()
+  }
+
+  handleGetInventory = () => {
+    axios.get(`/api/inventory`).then(res => {
+      this.setState({
+        inventory: res.data,
+      })
+    })
+  }
   
   render(){
     return (
       <div className="App">
         <Header />
-        <Dashboard>
-        </Dashboard>
+        <Dashboard
+        inventory={this.state.inventory}
+        handleGetInventory={this.handleGetInventory} />
         <Form />
       </div>
     );
