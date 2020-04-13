@@ -9,7 +9,8 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
-      inventory: []
+      inventory: [],
+      selectedProduct: null
     }
   }
 
@@ -24,6 +25,16 @@ class App extends Component {
       })
     })
   }
+
+  handleSelectProduct = id => {
+    this.state.inventory.map(e => {
+      if(e.id === id){
+        this.setState({
+          selectedProduct: e
+        })
+      }
+    })
+  }
   
   render(){
     return (
@@ -31,9 +42,11 @@ class App extends Component {
         <Header />
         <Dashboard
         inventory={this.state.inventory}
-        handleGetInventory={this.handleGetInventory} />
+        handleGetInventory={this.handleGetInventory}
+        handleSelectProduct={this.handleSelectProduct} />
         <Form
-        handleGetInventory={this.handleGetInventory} />
+        handleGetInventory={this.handleGetInventory}
+        selectedProduct={this.state.selectedProduct} />
       </div>
     );
   }

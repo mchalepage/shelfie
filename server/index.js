@@ -18,6 +18,8 @@ massive({
 
 app.get(`/api/inventory`, controller.getInventory)
 app.post(`/api/product`, controller.addProduct)
+app.delete(`/api/inventory/:id`, controller.deleteProduct)
+app.put(`/api/inventory/:id`, controller.updateProduct)
 
 
 app.listen(SERVER_PORT, () => {
